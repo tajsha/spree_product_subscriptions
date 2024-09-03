@@ -1,4 +1,4 @@
-class AddNextOccurrenceAtColumnToSpreeSubscriptions < ActiveRecord::Migration[4.2]
+class AddNextOccurrenceAtColumnToSpreeSubscriptions < ActiveRecord::Migration[7.1]
   def change
     remove_column :spree_subscriptions, :last_occurrence_at, :datetime
     remove_column :spree_subscriptions, :delivery_day, :integer

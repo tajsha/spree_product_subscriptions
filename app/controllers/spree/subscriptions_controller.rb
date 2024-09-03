@@ -25,18 +25,20 @@ module Spree
     def cancel
       respond_to do |format|
         if @subscription.cancel
-          format.json { render json: {
+          format.json do
+            render json: {
               subscription_id: @subscription.id,
               flash: t(".success"),
               method: Spree::Subscription::ACTION_REPRESENTATIONS[:cancel].upcase
             }, status: 200
-          }
+          end
           format.html { redirect_to edit_subscription_path(@subscription), success: t(".success") }
         else
-          format.json { render json: {
+          format.json do
+            render json: {
               flash: t(".error")
             }, status: 422
-          }
+          end
           format.html { redirect_to edit_subscription_path(@subscription), error: t(".error") }
         end
       end
@@ -75,35 +77,35 @@ module Spree
 
     private
 
-      def subscription_attributes
-        params.require(:subscription).permit(:quantity, :next_occurrence_at, :delivery_number,
-          :subscription_frequency_id, :variant_id, :prior_notification_days_gap,
-          ship_address_attributes: [:firstname, :lastname, :address1, :address2, :city, :zipcode, :country_id, :state_id, :phone],
-          bill_address_attributes: [:firstname, :lastname, :address1, :address2, :city, :zipcode, :country_id, :state_id, :phone])
-      end
+    def subscription_attributes
+      params.require(:subscription).permit(:quantity, :next_occurrence_at, :delivery_number,
+                                           :subscription_frequency_id, :variant_id, :prior_notification_days_gap,
+                                           ship_address_attributes: [:firstname, :lastname, :address1, :address2, :city, :zipcode, :country_id, :state_id, :phone],
+                                           bill_address_attributes: [:firstname, :lastname, :address1, :address2, :city, :zipcode, :country_id, :state_id, :phone])
+    end
 
-      def ensure_subscription
-        @subscription = Spree::Subscription.active.find_by(id: params[:id])
-        unless @subscription
-          respond_to do |format|
-            format.html { redirect_to account_path, error: Spree.t('subscriptions.alert.missing') }
-            format.json { render json: { flash: Spree.t("subscriptions.alert.missing") }, status: 422 }
-          end
+    def ensure_subscription
+      @subscription = Spree::Subscription.active.find_by(id: params[:id])
+      unless @subscription
+        respond_to do |format|
+          format.html { redirect_to account_path, error: Spree.t('subscriptions.alert.missing') }
+          format.json { render json: { flash: Spree.t("subscriptions.alert.missing") }, status: 422 }
         end
       end
+    end
 
-      def ensure_not_cancelled
-        if @subscription.not_changeable?
-          respond_to do |format|
-            format.html { redirect_back fallback_location: root_path, error: Spree.t("subscriptions.error.not_changeable") }
-            format.json { render json: { flash: Spree.t("subscriptions.error.not_changeable") }, status: 422 }
-          end
+    def ensure_not_cancelled
+      if @subscription.not_changeable?
+        respond_to do |format|
+          format.html { redirect_back fallback_location: root_path, error: Spree.t("subscriptions.error.not_changeable") }
+          format.json { render json: { flash: Spree.t("subscriptions.error.not_changeable") }, status: 422 }
         end
       end
+    end
 
-      def ensure_subscription_belongs_to_user
-        authorize! :update, @subscription
-      end
+    def ensure_subscription_belongs_to_user
+      authorize! :update, @subscription
+    end
 
   end
 end

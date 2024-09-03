@@ -54,6 +54,9 @@ en:
         error_on_already_cancelled: "Cancelled Subscription can not be processed."
 
     required_authentication: 'Please Login Before Proceeding.'
+    subscription_frequencies: Subscription Frequencies
+    my_subscriptions: My Subscriptions
+    customer_email: Customer Email
 
   activerecord:
     errors:

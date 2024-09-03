@@ -1,4 +1,4 @@
-class CreateSpreeProductSubscriptionFrequencies < ActiveRecord::Migration[4.2]
+class CreateSpreeProductSubscriptionFrequencies < ActiveRecord::Migration[7.1]
   def change
     create_table :spree_product_subscription_frequencies do |t|
       t.references :product, index: true

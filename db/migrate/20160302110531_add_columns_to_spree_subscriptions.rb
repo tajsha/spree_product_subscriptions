@@ -1,4 +1,4 @@
-class AddColumnsToSpreeSubscriptions < ActiveRecord::Migration[4.2]
+class AddColumnsToSpreeSubscriptions < ActiveRecord::Migration[7.1]
   def change
     add_column :spree_subscriptions, :number, :string
     add_column :spree_subscriptions, :cancellation_reasons, :text

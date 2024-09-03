@@ -2,4 +2,7 @@
   <ul class="nav nav-sidebar">
     <%= tab Spree::Subscription, url: spree.admin_subscriptions_url, icon: 'calendar', label: 'subscriptions' %>
   </ul>
+  <ul class="nav nav-sidebar">
+    <%= tab Spree::SubscriptionFrequency, url: admin_subscription_frequencies_path, icon: 'calendar', label: Spree.t(:subscription_frequencies) %>
+  </ul>
 <% end %>

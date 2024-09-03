@@ -48,23 +48,23 @@ module Spree
 
       private
 
-        def cancel_subscription_attributes
-          params.require(:subscription).permit(:cancellation_reasons)
-        end
+      def cancel_subscription_attributes
+        params.require(:subscription).permit(:cancellation_reasons)
+      end
 
-        def collection
-          @search = super.active.ransack(params[:q])
-          @collection = @search.result.includes(:frequency, :complete_orders, variant: :product)
-                                      .references(:complete_orders)
-                                      .order(created_at: :desc)
-                                      .page(params[:page])
-        end
+      def collection
+        @search = super.active.ransack(params[:q])
+        @collection = @search.result.includes(:frequency, :complete_orders, variant: :product)
+                              .references(:complete_orders)
+                              .order(created_at: :desc)
+                              .page(params[:page])
+      end
 
-        def ensure_not_cancelled
-          if @subscription.cancelled?
-            redirect_to collection_url, error: Spree.t("admin.subscriptions.error_on_already_cancelled")
-          end
+      def ensure_not_cancelled
+        if @subscription.cancelled?
+          redirect_to collection_url, error: Spree.t("admin.subscriptions.error_on_already_cancelled")
         end
+      end
 
     end
   end
