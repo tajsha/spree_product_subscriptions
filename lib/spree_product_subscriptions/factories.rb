@@ -1,7 +1,7 @@
 FactoryBot.define do
-  factory :monthly_subscription_frequency, class: Spree::SubscriptionFrequency do
-    title "monthly"
-    months_count 1
+  factory :daily_subscription_frequency, class: Spree::SubscriptionFrequency do
+    title "daily"
+    days_count 1
   end
 
   factory :nil_attributes_subscription, class: Spree::Subscription do
@@ -12,7 +12,7 @@ FactoryBot.define do
     quantity 2
     delivery_number 4
     association :variant, factory: :base_variant
-    association :frequency, factory: :monthly_subscription_frequency
+    association :frequency, factory: :daily_subscription_frequency
     association :parent_order, factory: :completed_order_with_totals
     association :ship_address, factory: :address
     association :bill_address, factory: :address

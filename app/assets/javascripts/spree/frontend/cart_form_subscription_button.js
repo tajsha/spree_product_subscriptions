@@ -1,10 +1,10 @@
 Spree.ready(function($) {
-  Spree.addToCartFormSubmissionOptions = function() {
-    $cartForm = $(ADD_TO_CART_FORM_SELECTOR);
-    if($cartForm.find('.cart_radio_button:checked').val() == ".subscription_options") {
+  Spree.addToCartFormSubmissionOptions = function(obj) {
+    $cartForm = obj;
+    if($cartForm.find("input[name='subscription[subscription_frequency_id]']:checked").val() > 0) {
       options = {
         subscribe: true,
-        subscription_frequency_id: $cartForm.find('#subscription_subscription_frequency_id option:selected').val(),
+        subscription_frequency_id: $cartForm.find("input[name='subscription[subscription_frequency_id]']:checked").val(),
         delivery_number: parseInt($cartForm.find('#subscription_delivery_number').val())
       };
       return options;

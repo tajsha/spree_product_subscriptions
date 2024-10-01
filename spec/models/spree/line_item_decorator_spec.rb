@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Spree::LineItem, type: :model do
 
   let(:order) { create(:completed_order_with_totals) }
-  let(:frequency) { create(:monthly_subscription_frequency, title: "monthly1") }
+  let(:frequency) { create(:daily_subscription_frequency, title: "daily1") }
   let(:variant) { create(:base_variant) }
   let!(:line_item_without_subscription_attributes) { create(:line_item, order: order, variant: variant) }
   let!(:line_item_with_subscription_attributes) { create(:line_item, order: order, subscription_frequency_id: 1, delivery_number: 6) }

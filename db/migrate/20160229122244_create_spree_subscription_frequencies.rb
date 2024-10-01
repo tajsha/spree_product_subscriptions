@@ -1,4 +1,4 @@
-class CreateSpreeSubscriptionFrequencies < ActiveRecord::Migration[7.1]
+class CreateSpreeSubscriptionFrequencies < ActiveRecord::Migration[5.2]
   def change
     create_table :spree_subscription_frequencies do |t|
       t.string :title

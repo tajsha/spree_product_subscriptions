@@ -13,7 +13,7 @@ describe Spree::Subscription, type: :model do
   let(:cancelled_subscription) { create(:valid_subscription, cancelled_at: Time.current, cancellation_reasons: "Test") }
   let(:subscription_with_recreated_orders) { create(:valid_subscription, orders: orders, next_occurrence_at: just_passed_time) }
   let(:just_passed_time) { Time.current - 1.minute }
-  let(:frequency) { create(:monthly_subscription_frequency) }
+  let(:frequency) { create(:daily_subscription_frequency) }
 
   describe "validations" do
     before { subject.frequency = frequency }

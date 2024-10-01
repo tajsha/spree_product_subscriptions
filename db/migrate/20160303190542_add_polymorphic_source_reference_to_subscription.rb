@@ -1,4 +1,4 @@
-class AddPolymorphicSourceReferenceToSubscription < ActiveRecord::Migration[7.1]
+class AddPolymorphicSourceReferenceToSubscription < ActiveRecord::Migration[5.2]
   def change
     remove_reference :spree_subscriptions, :source
     add_reference :spree_subscriptions, :source, polymorphic: true

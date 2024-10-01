@@ -1,4 +1,4 @@
-class AddEnabledToSpreeSubscriptions < ActiveRecord::Migration[7.1]
+class AddEnabledToSpreeSubscriptions < ActiveRecord::Migration[5.2]
   def change
     add_column :spree_subscriptions, :enabled, :boolean, default: false
   end

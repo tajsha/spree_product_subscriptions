@@ -154,7 +154,7 @@ module Spree
       end
 
       def next_occurrence_at_value
-        deliveries_remaining? ? Time.current + frequency.months_count.month : next_occurrence_at
+        deliveries_remaining? ? Time.current + frequency.days_count.days : next_occurrence_at
       end
 
       def can_set_next_occurrence_at?
@@ -162,7 +162,7 @@ module Spree
       end
 
       def set_next_occurrence_at_after_unpause
-        self.next_occurrence_at = (Time.current > next_occurrence_at) ? next_occurrence_at + frequency.months_count.month : next_occurrence_at
+        self.next_occurrence_at = (Time.current > next_occurrence_at) ? next_occurrence_at + frequency.days_count.days : next_occurrence_at
       end
 
       def can_pause?

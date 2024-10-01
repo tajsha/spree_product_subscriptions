@@ -1,4 +1,4 @@
-class CreateSpreeOrderSubscriptions < ActiveRecord::Migration[7.1]
+class CreateSpreeOrderSubscriptions < ActiveRecord::Migration[5.2]
   def change
     create_table :spree_order_subscriptions do |t|
       t.references :subscription, index: true
